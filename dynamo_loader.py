@@ -5,7 +5,7 @@ import json
 from decimal import Decimal
 
 profile = 'dynamodb-local'
-endpoint_url = 'http://localhost:8080'
+endpoint_url = 'http://localhost:8000'
 table_name = 'Beers'
 
 jsonfile = 'beers.json'
