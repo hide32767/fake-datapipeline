@@ -1,0 +1,31 @@
+version: '3'
+services:
+  spark-local:
+    build:
+      context: .
+      dockerfile: spark-local/Dockerfile
+    image: spark-local
+    container_name: "spark-local"
+    ports:
+      - 8888:8888
+      - 4040:4040
+    depends_on:
+      - dynamodb-local
+      - minio
+  dynamodb-local:
+    build:
+      context: .
+      dockerfile: dynamodb-local/Dockerfile
+    image: dynamodb-local
+    container_name: "dynamodb-local"
+    ports:
+      - 8000:8000
+#  lambda-python:
+#    image: lambci/lambda:python3.6
+#    container_name: "lambda-python"
+  minio:
+    image: minio/minio:latest
+    container_name: "minio"
+    ports:
+      - 9000:9000
+    command: minio server /data
